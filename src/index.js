@@ -1,3 +1,4 @@
-import { secantMethod } from "./method/iterativeMethod.js";
+import { falsePositionMethod } from "./method/iterativeMethod.js";
+import { gaussMethod } from "./method/matrix.js";
 
-secantMethod();
+gaussMethod();

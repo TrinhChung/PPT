@@ -1,5 +1,30 @@
 import * as math from "mathjs";
+import { sum } from "mathjs";
 const x = math.parse("x");
+
+//Copy ma tran
+const copyArray = (matrix) => {
+  const a = [];
+  for (let i = 0; i < matrix.length; i++) {
+    a[i] = [...matrix[i]];
+  }
+  return a;
+};
+
+//Ma tran duong cheo
+const eye = (n) => {
+  const a = new Array(n);
+  for (let i = 0; i < n; i++) {
+    a[i] = new Array(n);
+    for (let j = 0; j < n; j++) {
+      a[i][j] = 0;
+      if (i === j) {
+        a[i][j] = 1;
+      }
+    }
+  }
+  return a;
+};
 
 // Khử Gauss đưa ma trận về dạng tam giác trên
 const subtractGauss = (a) => {
@@ -54,6 +79,67 @@ export const gaussMethod = () => {
     [6, 4, 12, 5, 9],
   ];
   //   const result = gaussCalculator(matrix);
-  const result = subtractGauss(matrix);
+  const result = gaussCalculator(matrix);
   console.log(result);
+};
+
+const convertTriangular = (matrix, L) => {
+  const a = copyArray(matrix);
+  const n = a.length;
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = i + 1; j < n; j++) {
+      let m = (a[j][i] * 1.0) / a[i][i];
+      L[j][i] = m;
+      for (let p = 0; p < n; p++) {
+        a[j][p] = a[j][p] - a[i][p] * m * 1.0;
+      }
+    }
+  }
+  return a;
+};
+
+const backSubs = (a, b) => {
+  const n = a.length;
+  const result = [];
+  result[n - 1] = (b[n - 1] * 1.0) / a[n - 1][n - 1];
+  for (let i = n - 2; i >= 0; i--) {
+    let s = 0;
+    for (let j = i + 1; j < n; j++) {
+      s = s + a[i][j] * result[j];
+    }
+    result[i] = ((b[i] - s) * 1.0) / a[i][i];
+  }
+  return result;
+};
+
+const triDownResult = (a, b) => {
+  const n = a.length;
+  const result = a.map(() => 0);
+  result[0] = (b[0] * 1.0) / a[0][0];
+  for (let i = 1; i < n; i++) {
+    let s = 0;
+    for (let j = 0; j < i; j++) {
+      s = s + a[i][j] * result[j];
+    }
+    result[i] = ((b[i] - s) * 1.0) / a[i][i];
+  }
+  return result;
+};
+
+const luCalculator = (A0, b) => {
+  const L = copyArray(eye(A0.length));
+  const U = convertTriangular(A0, L);
+  const result1 = triDownResult(L, b);
+  console.log(backSubs(U, result1));
+};
+
+export const luMethod = () => {
+  const A0 = [
+    [2, 1, 1, 0],
+    [4, 3, 3, 1],
+    [8, 7, 9, 5],
+    [6, 7, 9, 8],
+  ];
+  const b = [6, 15, 41, 40];
+  luCalculator(A0, b);
 };

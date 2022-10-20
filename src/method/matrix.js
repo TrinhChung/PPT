@@ -1,9 +1,8 @@
 import * as math from "mathjs";
-import { sum } from "mathjs";
 const x = math.parse("x");
 
 //Copy ma tran
-const copyArray = (matrix) => {
+export const copyArray = (matrix) => {
   const a = [];
   for (let i = 0; i < matrix.length; i++) {
     a[i] = [...matrix[i]];
@@ -78,7 +77,6 @@ export const gaussMethod = () => {
     [1, 4, 3, 5, 9],
     [6, 4, 12, 5, 9],
   ];
-  //   const result = gaussCalculator(matrix);
   const result = gaussCalculator(matrix);
   console.log(result);
 };

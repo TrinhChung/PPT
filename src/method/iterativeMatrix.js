@@ -53,6 +53,20 @@ const matrixMaxRow = (a) => {
   return B;
 };
 
+const dissociateMatrix = (a, u, d) => {
+  for (let i = 0; i < a.length; i++) {
+    for (let j = 0; j < a[i].length; j++) {
+      if (j > i) {
+        u[i][j] = -a[i][j];
+        d[i][j] = 0;
+      } else {
+        u[i][j] = 0;
+        d[i][j] = a[i][j];
+      }
+    }
+  }
+};
+
 const jacobiCalculate = (B, x, b, n) => {
   if (n === 0) return x;
   let result = math.add(math.multiply(B, x), b);
@@ -79,4 +93,27 @@ export const jacobiMethod = () => {
   let x = copyArray(b);
 
   console.log(jacobiCalculate(t, x, b, 3000));
+};
+
+const seidelCalculate = (t, x, bg, n) => {
+  if (n === 1) return x;
+  x = math.add(math.multiply(t, x), bg);
+  return seidelCalculate(t, x, bg, n - 1);
+};
+
+export const seidelMethod = () => {
+  const matrix = [
+    [10, -1, 2, 0],
+    [-1, 11, -1, 3],
+    [2, -1, 10, -1],
+    [0, 3, -1, 8],
+  ];
+  const b = [[6], [25], [-11], [15]];
+  const u = copyArray(matrix);
+  const d = copyArray(matrix);
+  dissociateMatrix(matrix, u, d);
+  const t = math.multiply(math.pinv(d), u);
+  const bg = math.multiply(math.pinv(d), b);
+  const x = math.zeros([matrix.length, 1]);
+  console.log(seidelCalculate(t, x, bg, 1000));
 };

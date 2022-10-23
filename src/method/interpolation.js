@@ -63,7 +63,7 @@ export const interpolationNewtonMethod = () => {
     [14, 2.63905733],
     [15, 2.708050201],
   ];
-  const x = { x: 13 };
+  const x = { x: 12 };
   const pn = interpolationNewtonCalculate(arr, x.x, arr.length - 1);
 
   console.log("Pn(x)= " + pn);

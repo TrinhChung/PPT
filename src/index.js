@@ -1,6 +1,13 @@
-import { falsePositionMethod } from "./method/iterativeMethod.js";
-import { luMethod } from "./method/matrix.js";
-import { seidelMethod } from "./method/iterativeMatrix.js";
-import { interpolationNewtonMethod } from "./method/interpolation.js";
+import {
+  newtonMethod,
+  secantMethod,
+  falsePositionMethod,
+} from "./method/iterativeMethod.js";
+import { gaussMethod, luMethod } from "./method/matrix.js";
+import { jacobiMethod, seidelMethod } from "./method/iterativeMatrix.js";
+import {
+  interpolationLagrangeCalculate,
+  interpolationNewtonMethod,
+} from "./method/interpolation.js";
 
 interpolationNewtonMethod();

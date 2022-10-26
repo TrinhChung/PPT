@@ -20,6 +20,7 @@ const interpolationLagrangeMethod = (arr, x) => {
   return result;
 };
 
+//Phuong phap Lagrange
 export const interpolationLagrangeCalculate = () => {
   const f = math.parse("log(x)");
   const arr = [

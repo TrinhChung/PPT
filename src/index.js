@@ -27,6 +27,16 @@ import { interpolationNewtonMethod } from "./method/interpolation.js";
 
 // 2 method java (bisectionMethod,fixedPointIteration)
 
+//Noi suy splineS
 import { splineS } from "./method/interpolation.js";
 
-splineS();
+//Xap xi dao ham
+
+import {
+  ThreeEndPoint,
+  ThreeMidPoint,
+  SecondMidPoint,
+  ThreeEndPointVersion1,
+} from "./method/derivative.js";
+ThreeMidPoint();
+ThreeEndPointVersion1();

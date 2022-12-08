@@ -1,4 +1,5 @@
 import * as math from "mathjs";
+import { luCalculator } from "./matrix.js";
 const x = math.parse("x");
 
 const lkMethod = (x, arr, n) => {
@@ -69,4 +70,87 @@ export const interpolationNewtonMethod = () => {
 
   console.log("Pn(x)= " + pn);
   console.log("Sai số tuyệt đối là: " + math.abs(f.evaluate(x) - pn));
+};
+
+//Spline bậc 3
+
+const findCj = (i, xj) => {
+  if (xj[i + 1] === xj[i]) return 1000000000000000;
+  else return 1 / (xj[i + 1] - xj[i]);
+};
+
+const findKj = (k1, kn, fj, h) => {
+  const a = [];
+  const b = [];
+  const aj = new Array(fj.length).fill(0);
+  aj[0] = 1;
+  a.push(aj);
+  b.push(k1);
+  for (let i = 1; i < fj.length - 1; i++) {
+    const m = new Array(fj.length).fill(0);
+    m[i] = 4;
+    m[i - 1] = 1;
+    m[i + 1] = 1;
+    a.push(m);
+    b.push((3 * (fj[i + 1] - fj[i - 1])) / h);
+  }
+  const an = new Array(fj.length).fill(0);
+  an[fj.length - 1] = 1;
+  a.push(an);
+  b.push(kn);
+  return luCalculator(a, b);
+};
+
+const qj = (i, kj, fj, xj) => {
+  const cj = findCj(i, xj);
+  const ai = new Array(4).fill(0);
+  ai[0] = fj[i];
+  ai[1] = kj[i];
+  ai[2] =
+    -3 * fj[i] * Math.pow(cj, 2) +
+    3 * fj[i + 1] * Math.pow(cj, 2) -
+    2 * kj[i] * cj -
+    kj[i + 1] * cj;
+  ai[3] =
+    2 * (fj[i] * Math.pow(cj, 3)) -
+    2 * (fj[i + 1] * Math.pow(cj, 3)) +
+    kj[i] * Math.pow(cj, 2) +
+    kj[i + 1] * Math.pow(cj, 2);
+
+  let m = "";
+  console.log(ai);
+  for (let j = 0; j < 4; j++) {
+    m = m + ai[j] + "*((x-" + xj[i] + ")^" + j + ")";
+    if (j >= 0 && j < 3) {
+      m = m + "+";
+    }
+  }
+  return m;
+};
+
+export const splineS = () => {
+  const f = math.parse("x^4");
+  const df = math.derivative(f, x);
+  const xj = [-1, 0, 1];
+  const fj = [];
+  const k0 = df.evaluate({ x: xj[0] });
+  const kn = df.evaluate({ x: xj[xj.length - 1] });
+  if (xj.length > 0) {
+    for (let i = 0; i < xj.length; i++) {
+      fj.push(f.evaluate({ x: xj[i] }));
+    }
+  }
+
+  const kj = findKj(k0, kn, fj, 1);
+  const funArr = new Array(fj.length - 1);
+  for (let i = 0; i < fj.length - 1; i++) {
+    funArr[i] = math.parse(qj(i, kj, fj, xj));
+  }
+
+  const value = -0.5;
+  for (let i = 0; i < xj.length - 1; i++) {
+    if (value >= xj[i] && value <= xj[i + 1]) {
+      console.log(funArr[i].evaluate({ x: value }));
+    }
+  }
 };

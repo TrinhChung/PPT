@@ -124,11 +124,12 @@ const triDownResult = (a, b) => {
   return result;
 };
 
-const luCalculator = (A0, b) => {
+export const luCalculator = (A0, b) => {
   const L = copyArray(eye(A0.length));
   const U = convertTriangular(A0, L);
   const result1 = triDownResult(L, b);
   console.log(backSubs(U, result1));
+  return backSubs(U, result1);
 };
 
 export const luMethod = () => {

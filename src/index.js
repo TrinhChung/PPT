@@ -27,4 +27,6 @@ import { interpolationNewtonMethod } from "./method/interpolation.js";
 
 // 2 method java (bisectionMethod,fixedPointIteration)
 
-interpolationNewtonMethod();
+import { splineS } from "./method/interpolation.js";
+
+splineS();

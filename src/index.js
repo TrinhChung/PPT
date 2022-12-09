@@ -31,12 +31,18 @@ import { interpolationNewtonMethod } from "./method/interpolation.js";
 import { splineS } from "./method/interpolation.js";
 
 //Xap xi dao ham
-
 import {
   ThreeEndPoint,
   ThreeMidPoint,
   SecondMidPoint,
   ThreeEndPointVersion1,
 } from "./method/derivative.js";
-ThreeMidPoint();
-ThreeEndPointVersion1();
+
+//Xap xi tich phan
+import {
+  rectangleFormula,
+  trapezoidalFormula,
+  simpsonFormula,
+} from "./method/integral.js";
+
+simpsonFormula();

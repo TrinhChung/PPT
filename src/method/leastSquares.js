@@ -86,5 +86,7 @@ export const leastSquaresContinuousMethod = () => {
     }
   }
   console.log("Phuong trinh can tim: " + s);
-  const fun = math.parse(s);
+  const e = "(1/((1-x^2)^0.5))*((" + f + "-" + s + ")^2)";
+  console.log(e);
+  console.log("Sai so: " + simpsonCalculator(a1, a2, math.parse(e)));
 };

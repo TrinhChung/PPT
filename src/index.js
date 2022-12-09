@@ -45,9 +45,12 @@ import {
   simpsonFormula,
 } from "./method/integral.js";
 
+//Bình phương tối thiểu
 import {
   leastSquaresMethod,
   leastSquaresContinuousMethod,
 } from "./method/leastSquares.js";
 
-leastSquaresContinuousMethod();
+//Xap xi vi phan
+import { eulerMethod } from "./method/differentialEquation.js";
+eulerMethod();

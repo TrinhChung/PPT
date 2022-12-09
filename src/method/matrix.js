@@ -107,7 +107,11 @@ const backSubs = (a, b) => {
     }
     result[i] = ((b[i] - s) * 1.0) / a[i][i];
   }
+  for (let i = 0; i < result.length; i++) {
+    result[i] = Math.round(result[i] * 10000000) / 10000000;
+  }
   return result;
+  d;
 };
 
 const triDownResult = (a, b) => {
@@ -128,7 +132,6 @@ export const luCalculator = (A0, b) => {
   const L = copyArray(eye(A0.length));
   const U = convertTriangular(A0, L);
   const result1 = triDownResult(L, b);
-  console.log(backSubs(U, result1));
   return backSubs(U, result1);
 };
 
@@ -140,5 +143,5 @@ export const luMethod = () => {
     [6, 7, 9, 8],
   ];
   const b = [6, 15, 41, 40];
-  luCalculator(A0, b);
+  console.log(luCalculator(A0, b));
 };

@@ -36,6 +36,24 @@ export const trapezoidalFormula = () => {
   console.log("Precision: " + errorNumber);
 };
 
+export const simpsonCalculator = (a, b, f) => {
+  const n = 40;
+  const m = 2 * n;
+  const h = (b - a) / m;
+  let t = 0;
+  for (let i = 1; i < m; i++) {
+    if (i % 2 === 1) {
+      t += 4 * f.evaluate({ x: a + i * h });
+    } else {
+      t += 2 * f.evaluate({ x: a + i * h });
+    }
+  }
+  t += f.evaluate({ x: a });
+  t += f.evaluate({ x: b });
+  const result = (t * h) / 3;
+  return result;
+};
+
 export const simpsonFormula = () => {
   const f = math.parse("sin(x)");
   const df = math.derivative(f, x);

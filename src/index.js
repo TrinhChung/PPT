@@ -45,4 +45,9 @@ import {
   simpsonFormula,
 } from "./method/integral.js";
 
-simpsonFormula();
+import {
+  leastSquaresMethod,
+  leastSquaresContinuousMethod,
+} from "./method/leastSquares.js";
+
+leastSquaresContinuousMethod();

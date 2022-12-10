@@ -52,5 +52,6 @@ import {
 } from "./method/leastSquares.js";
 
 //Xap xi vi phan
-import { eulerMethod } from "./method/differentialEquation.js";
+import { eulerMethod, rungeKutta } from "./method/differentialEquation.js";
 eulerMethod();
+rungeKutta();

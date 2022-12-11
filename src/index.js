@@ -53,5 +53,7 @@ import {
 
 //Xap xi vi phan
 import { eulerMethod, rungeKutta } from "./method/differentialEquation.js";
-eulerMethod();
-rungeKutta();
+
+import { dftMethod, inverseDftMethod, fftMethod } from "./method/fourier.js";
+dftMethod();
+fftMethod();

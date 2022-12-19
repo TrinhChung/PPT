@@ -3,20 +3,25 @@ const x = math.parse("x");
 
 let newtonCalculator = (f, df, scope, n) => {
   const xn = scope.x - f.evaluate(scope) / df.evaluate(scope);
-  if (n === 1) return xn;
-  else {
+  console.log(xn);
+  if (n === 1) {
+    console.log("sai số:" + math.abs(xn - scope.x));
+    console.log("sai số tương đối:" + math.abs(xn - scope.x) / xn);
+    return xn;
+  } else {
     scope.x = xn;
     return newtonCalculator(f, df, scope, n - 1);
   }
 };
 
 export const newtonMethod = () => {
-  const f = math.parse("x^2 - 6");
+  const f = math.parse("(5/x) - 38");
   const df = math.derivative(f, x);
   const scope = {
-    x: 1,
+    x: 0.2,
   };
-  console.log("Result newton Method: " + newtonCalculator(f, df, scope, 2));
+  const result = newtonCalculator(f, df, scope, 3);
+  console.log("Result newton Method: " + result);
 };
 
 const secantCalculator = (f, x1, x2, n) => {

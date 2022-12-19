@@ -103,12 +103,11 @@ const seidelCalculate = (t, x, bg, n) => {
 
 export const seidelMethod = () => {
   const matrix = [
-    [10, -1, 2, 0],
-    [-1, 11, -1, 3],
-    [2, -1, 10, -1],
-    [0, 3, -1, 8],
+    [25, 4, -1],
+    [4, 23, 1],
+    [2, -3, 29],
   ];
-  const b = [[6], [25], [-11], [15]];
+  const b = [[1], [-2], [1]];
   const u = copyArray(matrix);
   const d = copyArray(matrix);
   dissociateMatrix(matrix, u, d);

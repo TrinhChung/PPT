@@ -23,14 +23,14 @@ const interpolationLagrangeMethod = (arr, x) => {
 
 //Phuong phap Lagrange
 export const interpolationLagrangeCalculate = () => {
-  const f = math.parse("log(x)");
+  const f = math.parse("2^x");
   const arr = [
-    [9, 2.19722458],
-    [9.5, 2.2512918],
-    [11, 2.39789527],
-    [12, 2.48490665],
+    [-11, Math.pow(2, -11)],
+    [0, 1],
+    [11, Math.pow(2, 11)],
+    [22, Math.pow(2, 22)],
   ];
-  const x = { x: 9.2 };
+  const x = { x: -1 };
   const p = interpolationLagrangeMethod(arr, x.x);
   console.log("p(x)= " + p);
   console.log("Sai số tuyệt đối là " + math.abs(f.evaluate(x) - p));

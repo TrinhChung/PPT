@@ -1,6 +1,7 @@
 import * as math from "mathjs";
 const x = math.parse("x");
 
+//Công thức hình chữ nhật
 export const rectangleFormula = () => {
   const f = math.parse("sin(x)");
   const a = 1;
@@ -15,6 +16,7 @@ export const rectangleFormula = () => {
   console.log("Integral: " + result);
 };
 
+//Công thức hình thang
 export const trapezoidalFormula = () => {
   const f = math.parse("sin(x)");
   const df = math.derivative(f, x);
@@ -55,7 +57,7 @@ export const simpsonCalculator = (a, b, f) => {
 };
 
 export const simpsonFormula = () => {
-  const f = math.parse("sin(x)");
+  const f = math.parse("x*log(x)/log(e)");
   const df = math.derivative(f, x);
   const df2 = math.derivative(df, x);
   const df3 = math.derivative(df2, x);
@@ -63,7 +65,7 @@ export const simpsonFormula = () => {
 
   const a = 1;
   const b = 2;
-  const n = 10;
+  const n = 3;
   const m = 2 * n;
   const h = (b - a) / m;
   let t = 0;
@@ -77,8 +79,9 @@ export const simpsonFormula = () => {
   t += f.evaluate({ x: a });
   t += f.evaluate({ x: b });
   const result = (t * h) / 3;
-  const errorNumber =
-    -((b - a) * h * h * h * h * df4.evaluate({ x: a + h })) / 180;
+  const errorNumber = math.abs(
+    -((b - a) * h * h * h * h * df4.evaluate({ x: a + h })) / 180
+  );
   console.log("Integral: " + result);
   console.log("Precision: " + errorNumber);
 };

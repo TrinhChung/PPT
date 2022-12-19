@@ -97,6 +97,8 @@ const convertTriangular = (matrix, L) => {
 };
 
 const backSubs = (a, b) => {
+  console.log("a:" + a);
+  console.log("b:" + b);
   const n = a.length;
   const result = [];
   result[n - 1] = (b[n - 1] * 1.0) / a[n - 1][n - 1];

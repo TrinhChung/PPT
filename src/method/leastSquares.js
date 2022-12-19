@@ -27,6 +27,7 @@ const errorNumber = (fun, yi, xi) => {
   return t;
 };
 
+//Bình phương tối thiểu rời rạc
 export const leastSquaresMethod = () => {
   const o = ["1", "x", "x*x"];
   const xi = [0, 0.25, 0.5, 0.75, 1];
@@ -56,6 +57,7 @@ export const leastSquaresMethod = () => {
   console.log("Sai so: " + errorNumber(fun, yi, xi));
 };
 
+//Bình phương tối thiểu liên tục
 export const leastSquaresContinuousMethod = () => {
   const o = ["1", "x"];
   const f = "(1/x)";

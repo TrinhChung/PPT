@@ -1,6 +1,6 @@
 //Phương pháp Newton
 import { newtonMethod } from "./method/iterativeMethod.js";
-
+newtonMethod();
 //Phương pháp dây cung
 import { secantMethod } from "./method/iterativeMethod.js";
 
@@ -18,7 +18,6 @@ import { jacobiMethod } from "./method/iterativeMatrix.js";
 
 //Giải ma trận bằng phương pháp lặp Gauss-seidel
 import { seidelMethod } from "./method/iterativeMatrix.js";
-
 //Phương pháp nội suy Lagrange
 import { interpolationLagrangeCalculate } from "./method/interpolation.js";
 
@@ -55,5 +54,5 @@ import {
 import { eulerMethod, rungeKutta } from "./method/differentialEquation.js";
 
 import { dftMethod, inverseDftMethod, fftMethod } from "./method/fourier.js";
-dftMethod();
-fftMethod();
+// dftMethod();
+// fftMethod();
